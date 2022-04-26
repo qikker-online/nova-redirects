@@ -23,8 +23,8 @@ class Redirect extends Resource
     {
         return [
             ID::make(),
-            Text::make('From', 'from_url')->creationRules('required', 'unique:nova_redirects,from_url')->updateRules('required', 'unique:nova_redirects,from_url,{{resourceId}}'),
-            Text::make('To', 'to_url')->rules('required'),
+            Text::make('From', 'from_url')->creationRules('required', 'unique:nova_redirects,from_url','url')->updateRules('required', 'unique:nova_redirects,from_url,{{resourceId}}', 'url'),
+            Text::make('To', 'to_url')->rules('required','url'),
             Select::make('Status', 'status_code')->options([
                 '301' => '301 (Moved Permanently)',
                 '302' => '302 (Found)',
